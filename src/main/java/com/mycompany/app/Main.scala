@@ -34,21 +34,21 @@ class Main(scope: Construct, id: String, options: Option[ChartProps]) extends Ch
   def this(scope: Construct, id: String) { this(scope, id, None) }
 
   private val serviceType = "LoadBalancer"
-  private val selector: Map[String, String] = Map("app" -> "cdk8s-scala-experiment-k8s")
+  private val selector = Map("app" -> "cdk8s-scala-experiment-k8s")
 
   // Defining a LoadBalancer Service
   val service: KubeService = {
-    val servicePort: ServicePort = new ServicePort.Builder()
+    val servicePort = new ServicePort.Builder()
       .port(80)
       .targetPort(IntOrString.fromNumber(8080))
       .build
-    val servicePorts: List[ServicePort] = List(servicePort)
-    val serviceSpec: ServiceSpec = new ServiceSpec.Builder()
+    val servicePorts = List(servicePort)
+    val serviceSpec = new ServiceSpec.Builder()
       .`type`(serviceType)
       .selector(selector.asJava)
       .ports(servicePorts.asJava)
       .build
-    val serviceProps: KubeServiceProps = new KubeServiceProps.Builder()
+    val serviceProps = new KubeServiceProps.Builder()
       .spec(serviceSpec)
       .build
 
@@ -65,31 +65,31 @@ class Main(scope: Construct, id: String, options: Option[ChartProps]) extends Ch
 
   // Defining a Deployment
   val deployment: KubeDeployment = {
-    val labelSelector: LabelSelector = new LabelSelector.Builder().matchLabels(selector.asJava).build
-    val objectMeta: ObjectMeta = new ObjectMeta.Builder().labels(selector.asJava).build
-    val containerPort: ContainerPort = new ContainerPort.Builder()
+    val labelSelector = new LabelSelector.Builder().matchLabels(selector.asJava).build
+    val objectMeta = new ObjectMeta.Builder().labels(selector.asJava).build
+    val containerPort = new ContainerPort.Builder()
       .containerPort(8080)
       .build
-    val containerPorts: List[ContainerPort] = List(containerPort)
-    val container: Container = new Container.Builder()
+    val containerPorts = List(containerPort)
+    val container = new Container.Builder()
       .name("cdk8s-scala-experiment-kubernetes")
       .image("paulbouwer/hello-kubernetes:1.7")
       .ports(containerPorts.asJava)
       .build
-    val containers: List[Container] = List(container)
-    val podSpec: PodSpec = new PodSpec.Builder()
+    val containers = List(container)
+    val podSpec = new PodSpec.Builder()
       .containers(containers.asJava)
       .build
-    val podTemplateSpec: PodTemplateSpec = new PodTemplateSpec.Builder()
+    val podTemplateSpec = new PodTemplateSpec.Builder()
       .metadata(objectMeta)
       .spec(podSpec)
       .build
-    val deploymentSpec: DeploymentSpec = new DeploymentSpec.Builder()
+    val deploymentSpec = new DeploymentSpec.Builder()
       .replicas(1)
       .selector(labelSelector)
       .template(podTemplateSpec)
       .build
-    val deploymentProps: KubeDeploymentProps = new KubeDeploymentProps.Builder()
+    val deploymentProps = new KubeDeploymentProps.Builder()
       .spec(deploymentSpec)
       .build
 
