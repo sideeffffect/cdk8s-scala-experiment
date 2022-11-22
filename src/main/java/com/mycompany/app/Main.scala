@@ -42,11 +42,10 @@ class Main(scope: Construct, id: String, options: Option[ChartProps]) extends Ch
       .port(80)
       .targetPort(IntOrString.fromNumber(8080))
       .build
-    val servicePorts = List(servicePort)
     val serviceSpec = new ServiceSpec.Builder()
       .`type`(serviceType)
       .selector(selector.asJava)
-      .ports(servicePorts.asJava)
+      .ports(List(servicePort).asJava)
       .build
     val serviceProps = new KubeServiceProps.Builder()
       .spec(serviceSpec)
@@ -70,15 +69,13 @@ class Main(scope: Construct, id: String, options: Option[ChartProps]) extends Ch
     val containerPort = new ContainerPort.Builder()
       .containerPort(8080)
       .build
-    val containerPorts = List(containerPort)
     val container = new Container.Builder()
       .name("cdk8s-scala-experiment-kubernetes")
       .image("paulbouwer/hello-kubernetes:1.7")
-      .ports(containerPorts.asJava)
+      .ports(List(containerPort).asJava)
       .build
-    val containers = List(container)
     val podSpec = new PodSpec.Builder()
-      .containers(containers.asJava)
+      .containers(List(container).asJava)
       .build
     val podTemplateSpec = new PodTemplateSpec.Builder()
       .metadata(objectMeta)
