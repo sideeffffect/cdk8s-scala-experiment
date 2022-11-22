@@ -1,1 +1,1 @@
-{"version":"1.0.0","resources":{}}
+{"version":"1.0.0","resources":{"cdk8s-scala-experiment-service-c8b2616a":{"path":"cdk8s-scala-experiment/service"},"cdk8s-scala-experiment-deployment-c8f5f197":{"path":"cdk8s-scala-experiment/deployment"}}}

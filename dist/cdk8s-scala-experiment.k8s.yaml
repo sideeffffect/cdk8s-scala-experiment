@@ -1,0 +1,31 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: cdk8s-scala-experiment-service-c8b2616a
+spec:
+  ports:
+    - port: 80
+      targetPort: 8080
+  selector:
+    app: cdk8s-scala-experiment-k8s
+  type: LoadBalancer
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: cdk8s-scala-experiment-deployment-c8f5f197
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: cdk8s-scala-experiment-k8s
+  template:
+    metadata:
+      labels:
+        app: cdk8s-scala-experiment-k8s
+    spec:
+      containers:
+        - image: paulbouwer/hello-kubernetes:1.7
+          name: cdk8s-scala-experiment-kubernetes
+          ports:
+            - containerPort: 8080
