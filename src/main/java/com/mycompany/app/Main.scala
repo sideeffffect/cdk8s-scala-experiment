@@ -14,9 +14,7 @@ object Main {
   }
 }
 
-class Main(scope: Construct, id: String, options: Option[ChartProps]) extends Chart(scope, id, options.orNull) {
-
-  def this(scope: Construct, id: String) = this(scope, id, None)
+class Main(scope: Construct, id: String, options: Option[ChartProps] = None) extends Chart(scope, id, options.orNull) {
 
   private val serviceType = "LoadBalancer"
   private val selector = Map("app" -> "cdk8s-scala-experiment-k8s")
