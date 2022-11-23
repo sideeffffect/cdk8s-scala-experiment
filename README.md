@@ -5,6 +5,18 @@ Adapted from https://cdk8s.io/docs/latest/getting-started/
 The whole thing takes less than 7 seconds from scratch.
 Compiling the project itself takes 3.6 s of that.
 
+Generate necessary code for interop with
+```
+cdk8s import
+```
+
+And then generate the k8s config with
+
+```
+cdk8s synth
+```
+
+Old logs when `cdk8s synth` didn't run `compile` by itself:
 ```
 > mvn compile ; cdk8s synth                                                                                                                                                                                                                                                 4834ms  St 23. listopadu 2022, 10:59:45
 [INFO] Scanning for projects...

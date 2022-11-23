@@ -1,4 +1,5 @@
 language: java
-app:  mvn exec:java -Dexec.mainClass="com.mycompany.app.Main"
+app:  mvn compile; mvn exec:java -Dexec.mainClass="com.mycompany.app.Main"
 imports:
-  - k8s
+  - https://github.com/fluxcd/image-reflector-controller/releases/download/v0.21.0/image-reflector-controller.crds.yaml
+  - crds/victoriametrics/vmservicescrape.yaml
