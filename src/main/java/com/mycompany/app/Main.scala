@@ -3,23 +3,8 @@ package com.mycompany.app
 import software.constructs.Construct
 
 import scala.jdk.CollectionConverters._
-import org.cdk8s.App
-import org.cdk8s.Chart
-import org.cdk8s.ChartProps
-import imports.k8s.IntOrString
-import imports.k8s.LabelSelector
-import imports.k8s.ObjectMeta
-import imports.k8s.PodTemplateSpec
-import imports.k8s.KubeService
-import imports.k8s.KubeServiceProps
-import imports.k8s.ServicePort
-import imports.k8s.ServiceSpec
-import imports.k8s.DeploymentSpec
-import imports.k8s.PodSpec
-import imports.k8s.Container
-import imports.k8s.ContainerPort
-import imports.k8s.KubeDeployment
-import imports.k8s.KubeDeploymentProps
+import org.cdk8s._
+import org.cdk8s.plus25.k8s._
 
 object Main {
   def main(args: Array[String]): Unit = {
