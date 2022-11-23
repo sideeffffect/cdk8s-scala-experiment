@@ -43,6 +43,17 @@
         <groupId>net.alchim31.maven</groupId>
         <artifactId>scala-maven-plugin</artifactId>
         <version>4.7.2</version>
+        <configuration>
+          <args>
+            <arg>-encoding</arg>
+            <arg>utf-8</arg>
+            <arg>-deprecation</arg>
+            <arg>-unchecked</arg>
+            <arg>-feature</arg>
+            <arg>-Xlint</arg>
+            <arg>-Xfatal-warnings</arg>
+          </args>
+        </configuration>
         <executions>
           <execution>
             <goals>
